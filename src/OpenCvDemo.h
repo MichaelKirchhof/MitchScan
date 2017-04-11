@@ -21,13 +21,16 @@ class OpenCvDemo {
 public:
 	OpenCvDemo();
 	virtual ~OpenCvDemo();
-	void runDemo( char** argv);
+	void runDemo( string argv);
 	void goodFeaturesToTrack_Demo( int, void* );
 	Mat src, src_gray;
 
 	int maxCorners;
 	int maxTrackbar;
+	int IQualityLevel;
+	double qualityLevel;
 	char* source_window;
+	VideoCapture CaptureClass;
 };
 
 

@@ -6,6 +6,8 @@
  */
 
 #include "OpenCvDemo.h"
+#include "Timer.h"
+#include <unistd.h>
 
 
 OpenCvDemo MyDemo;
@@ -14,9 +16,11 @@ OpenCvDemo MyDemo;
 
 
 OpenCvDemo::OpenCvDemo() {
-	maxCorners = 23;
+	maxCorners = 50;
 	maxTrackbar = 2000;
-	source_window = "Image";
+	IQualityLevel = 10;
+	qualityLevel = IQualityLevel / 1000.0;
+	source_window = "Image MK";
 
 }
 
@@ -27,34 +31,45 @@ OpenCvDemo::~OpenCvDemo() {
 
 
 
-void OpenCvDemo::runDemo( char** argv){
+void OpenCvDemo::runDemo( string argv){
 
-	VideoCapture CaptureClass;
-	CaptureClass.open(argv[1]);
+	CaptureClass.open(argv);
 
-	CaptureClass.grab();
-	CaptureClass.retrieve(src,3);
+	CaptureClass >> src;
+	cvtColor( src, src_gray, CV_BGR2GRAY );
 
-	//src = imread( argv[1], 1 );
+	/// Create Window
+	namedWindow( source_window, CV_WINDOW_KEEPRATIO );
 
+	/// Create Trackbar to set the number of corners
+	createTrackbar( "Max  corners:", source_window, &maxCorners, maxTrackbar, callback );
+	createTrackbar( "Quality:", source_window, &IQualityLevel, maxTrackbar, callback );
 
-	  cvtColor( src, src_gray, CV_BGR2GRAY );
+	imshow( source_window, src );
 
-	  /// Create Window
-	  namedWindow( source_window, CV_WINDOW_AUTOSIZE );
+	waitKey(0);
+	tTimer DrawTimer(1000);
+	int FrameCounter =0;
+	while (not src.empty()){
+		FrameCounter ++;
+		cout << "Current Frame Number: " << FrameCounter << endl;
+		goodFeaturesToTrack_Demo( 0, 0 );
+		/*if (DrawTimer.Over()){
+			waitKey(1);
+			DrawTimer.Reset(1000);
+		} else {
+			usleep (20);
+		}*/
+		// if (FrameCounter % 50 ==0) waitKey(1);
 
-	  /// Create Trackbar to set the number of corners
-	  createTrackbar( "Max  corners:", source_window, &maxCorners, maxTrackbar, callback );
+		CaptureClass >> src;
+		cvtColor( src, src_gray, CV_BGR2GRAY );
+	}
 
-	  imshow( source_window, src );
+	waitKey(0);
 
-	  goodFeaturesToTrack_Demo( 0, 0 );
-
-	  waitKey(0);
-
-	  destroyAllWindows();
-	  return;
-
+	destroyAllWindows();
+	return;
 }
 
 void callback( int, void* )
@@ -64,15 +79,18 @@ void callback( int, void* )
 
 void OpenCvDemo::goodFeaturesToTrack_Demo(int, void *)
 {
+
+	if (IQualityLevel >2)
+		qualityLevel = IQualityLevel / 1000.0;
+
 	RNG rng(12345);
 	if( maxCorners < 1 ) { maxCorners = 1; }
 
 	  /// Parameters for Shi-Tomasi algorithm
 	  vector<Point2f> corners;
-	  double qualityLevel = 0.01;
 	  double minDistance = 10;
 	  int blockSize = 3;
-	  bool useHarrisDetector = false;
+	  bool useHarrisDetector = true;
 	  double k = 0.04;
 
 	  /// Copy the source image
@@ -100,4 +118,5 @@ void OpenCvDemo::goodFeaturesToTrack_Demo(int, void *)
 	  /// Show what you got
 	  namedWindow( source_window, CV_WINDOW_AUTOSIZE );
 	  imshow( source_window, copy );
+
 }

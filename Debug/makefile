@@ -38,19 +38,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: OpenCvTest
+all: ImageTransformation
 
 # Tool invocations
-OpenCvTest: $(OBJS) $(USER_OBJS)
+ImageTransformation: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross G++ Linker'
-	g++ -L/usr/lib/i386-linux-gnu -o "OpenCvTest" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L/usr/lib/i386-linux-gnu -o "ImageTransformation" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(C++_DEPS)$(OBJS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) OpenCvTest
+	-$(RM) $(C++_DEPS)$(OBJS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) ImageTransformation
 	-@echo ' '
 
 .PHONY: all clean dependents
