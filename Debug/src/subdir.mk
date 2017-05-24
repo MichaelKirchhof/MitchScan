@@ -5,23 +5,29 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/CornerDection.cpp \
+../src/HomographyDecompDemo.cpp \
 ../src/OpenCvDemo.cpp \
 ../src/OpenCvTest.cpp \
 ../src/Timer.cpp \
+../src/Typdef.cpp \
 ../src/tFeatureDetector.cpp 
 
 OBJS += \
 ./src/CornerDection.o \
+./src/HomographyDecompDemo.o \
 ./src/OpenCvDemo.o \
 ./src/OpenCvTest.o \
 ./src/Timer.o \
+./src/Typdef.o \
 ./src/tFeatureDetector.o 
 
 CPP_DEPS += \
 ./src/CornerDection.d \
+./src/HomographyDecompDemo.d \
 ./src/OpenCvDemo.d \
 ./src/OpenCvTest.d \
 ./src/Timer.d \
+./src/Typdef.d \
 ./src/tFeatureDetector.d 
 
 
@@ -29,14 +35,14 @@ CPP_DEPS += \
 src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cross G++ Compiler'
-	g++ -I/usr/include/opencv -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	g++ -I/home/michael/opencvShare/include/opencv2 -I/home/michael/opencvShare/include/opencv -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 src/OpenCvTest.o: ../src/OpenCvTest.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cross G++ Compiler'
-	g++ -I/usr/include/opencv -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"src/OpenCvTest.d" -o "$@" "$<"
+	g++ -I/home/michael/opencvShare/include -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"src/OpenCvTest.d" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

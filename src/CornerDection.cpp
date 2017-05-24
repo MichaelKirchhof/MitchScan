@@ -8,7 +8,7 @@
 #include "CornerDection.h"
 
 CornerDection::CornerDection() {
-	// TODO Auto-generated constructor stub
+
 
 }
 

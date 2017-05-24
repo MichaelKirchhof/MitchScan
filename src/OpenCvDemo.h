@@ -9,6 +9,7 @@
 #define OPENCVDEMO_H_
 
 #include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgcodecs.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
 #include <stdio.h>
@@ -35,6 +36,7 @@ public:
 
 
 void callback( int, void* );
+void ButtonClickOpenCvDemo( int, void* );
 
 extern OpenCvDemo MyDemo;
 

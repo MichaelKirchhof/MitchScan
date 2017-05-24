@@ -16,15 +16,17 @@
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.cross.exe.debug.1193540646" name="Debug" parent="cdt.managedbuild.config.gnu.cross.exe.debug">
 					<folderInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.1193540646." name="/" resourcePath="">
-						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.exe.debug.1445982353" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.exe.debug">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.exe.debug.1445982353" name="Cross GCC" nonInternalBuilderId="cdt.managedbuild.builder.gnu.cross" superClass="cdt.managedbuild.toolchain.gnu.cross.exe.debug">
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross.1409170433" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
-							<builder buildPath="${workspace_loc:/OpenCvTest}/Debug" id="cdt.managedbuild.builder.gnu.cross.1450337033" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.builder.gnu.cross"/>
+							<builder buildPath="${workspace_loc:/ImageTransformation}/Debug" id="cdt.managedbuild.builder.gnu.cross.1717614274" keepEnvironmentInBuildfile="false" name="Gnu Make Builder" superClass="cdt.managedbuild.builder.gnu.cross"/>
 							<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.38910722" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler">
-								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.option.optimization.level.1686616154" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
+								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.option.optimization.level.1686616154" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" useByScannerDiscovery="false" value="gnu.c.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.debugging.level.831246444" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.564008205" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="/usr/include/opencv"/>
+									<listOptionValue builtIn="false" value="/home/michael/opencvShare/include/opencv"/>
+									<listOptionValue builtIn="false" value="/home/michael/opencvShare/include/opencv2"/>
 								</option>
+								<option id="gnu.c.compiler.option.dialect.std.330561090" name="Language standard" superClass="gnu.c.compiler.option.dialect.std" useByScannerDiscovery="true" value="gnu.c.compiler.dialect.default" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.213984659" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1699622422" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler">
@@ -32,34 +34,34 @@
 								<option id="gnu.cpp.compiler.option.debugging.level.21189967" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.files.1898940727" name="Include files (-include)" superClass="gnu.cpp.compiler.option.include.files" useByScannerDiscovery="false"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1663160376" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="/usr/include/opencv"/>
+									<listOptionValue builtIn="false" value="/home/michael/opencvShare/include/opencv2"/>
+									<listOptionValue builtIn="false" value="/home/michael/opencvShare/include/opencv"/>
 								</option>
+								<option id="gnu.cpp.compiler.option.dialect.std.1587527967" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" useByScannerDiscovery="true" value="gnu.cpp.compiler.dialect.default" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.972150007" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.1901050226" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker"/>
 							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.1896861883" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker">
 								<option id="gnu.cpp.link.option.libs.59253257" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" value="opencv_calib3d"/>
-									<listOptionValue builtIn="false" value="opencv_contrib"/>
+									<listOptionValue builtIn="false" value="opencv_shape "/>
+									<listOptionValue builtIn="false" value="opencv_stitching "/>
+									<listOptionValue builtIn="false" value="opencv_objdetect "/>
+									<listOptionValue builtIn="false" value="opencv_superres "/>
+									<listOptionValue builtIn="false" value="opencv_videostab "/>
+									<listOptionValue builtIn="false" value="opencv_calib3d "/>
+									<listOptionValue builtIn="false" value="opencv_features2d "/>
+									<listOptionValue builtIn="false" value="opencv_highgui "/>
+									<listOptionValue builtIn="false" value="opencv_videoio "/>
+									<listOptionValue builtIn="false" value="opencv_imgcodecs "/>
+									<listOptionValue builtIn="false" value="opencv_video "/>
+									<listOptionValue builtIn="false" value="opencv_photo "/>
+									<listOptionValue builtIn="false" value="opencv_ml "/>
+									<listOptionValue builtIn="false" value="opencv_imgproc "/>
+									<listOptionValue builtIn="false" value="opencv_flann "/>
 									<listOptionValue builtIn="false" value="opencv_core"/>
-									<listOptionValue builtIn="false" value="opencv_features2d"/>
-									<listOptionValue builtIn="false" value="opencv_flann"/>
-									<listOptionValue builtIn="false" value="opencv_gpu"/>
-									<listOptionValue builtIn="false" value="opencv_highgui"/>
-									<listOptionValue builtIn="false" value="opencv_imgproc"/>
-									<listOptionValue builtIn="false" value="opencv_legacy"/>
-									<listOptionValue builtIn="false" value="opencv_ml"/>
-									<listOptionValue builtIn="false" value="opencv_objdetect"/>
-									<listOptionValue builtIn="false" value="opencv_ocl"/>
-									<listOptionValue builtIn="false" value="opencv_photo"/>
-									<listOptionValue builtIn="false" value="opencv_stitching"/>
-									<listOptionValue builtIn="false" value="opencv_superres"/>
-									<listOptionValue builtIn="false" value="opencv_ts"/>
-									<listOptionValue builtIn="false" value="opencv_video"/>
-									<listOptionValue builtIn="false" value="opencv_videostab"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.622561505" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="/usr/lib/i386-linux-gnu"/>
+									<listOptionValue builtIn="false" value="/home/michael/opencvShare/Build/lib"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1250318354" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -72,20 +74,10 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<folderInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.1193540646.1578980340" name="/" resourcePath="trunk">
-						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.exe.debug.1525895849" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.exe.debug" unusedChildren="">
-							<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.651137" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.38910722"/>
-							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1265560942" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1699622422"/>
-							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.641001285" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker.1901050226"/>
-							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.1336161954" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.1896861883"/>
-							<tool id="cdt.managedbuild.tool.gnu.cross.archiver.1960130402" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver.1487954886"/>
-							<tool id="cdt.managedbuild.tool.gnu.cross.assembler.1480122492" name="Cross GCC Assembler" superClass="cdt.managedbuild.tool.gnu.cross.assembler.914029350"/>
-						</toolChain>
-					</folderInfo>
 					<fileInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.1193540646.112120914" name="OpenCvTest.cpp" rcbsApplicability="disable" resourcePath="src/OpenCvTest.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1699622422.778297561">
 						<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1699622422.778297561" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1699622422">
 							<option id="gnu.cpp.compiler.option.include.paths.1087597935" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-								<listOptionValue builtIn="false" value="/usr/include/opencv"/>
+								<listOptionValue builtIn="false" value="/home/michael/opencvShare/include"/>
 							</option>
 							<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.120358591" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 						</tool>
@@ -150,21 +142,6 @@
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="OpenCvTest.cdt.managedbuild.target.gnu.cross.exe.1879759264" name="Executable" projectType="cdt.managedbuild.target.gnu.cross.exe"/>
 	</storageModule>
-	<storageModule moduleId="scannerConfiguration">
-		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.654180966;cdt.managedbuild.config.gnu.cross.exe.release.654180966.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.184540244;cdt.managedbuild.tool.gnu.cpp.compiler.input.1838836537">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.654180966;cdt.managedbuild.config.gnu.cross.exe.release.654180966.;cdt.managedbuild.tool.gnu.cross.c.compiler.1369214403;cdt.managedbuild.tool.gnu.c.compiler.input.1516627059">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1193540646;cdt.managedbuild.config.gnu.cross.exe.debug.1193540646.;cdt.managedbuild.tool.gnu.cross.c.compiler.38910722;cdt.managedbuild.tool.gnu.c.compiler.input.213984659">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1193540646;cdt.managedbuild.config.gnu.cross.exe.debug.1193540646.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.1699622422;cdt.managedbuild.tool.gnu.cpp.compiler.input.972150007">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Release">
@@ -173,5 +150,20 @@
 		<configuration configurationName="Debug">
 			<resource resourceType="PROJECT" workspacePath="/OpenCvTest"/>
 		</configuration>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1193540646;cdt.managedbuild.config.gnu.cross.exe.debug.1193540646.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.1699622422;cdt.managedbuild.tool.gnu.cpp.compiler.input.972150007">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.654180966;cdt.managedbuild.config.gnu.cross.exe.release.654180966.;cdt.managedbuild.tool.gnu.cross.c.compiler.1369214403;cdt.managedbuild.tool.gnu.c.compiler.input.1516627059">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1193540646;cdt.managedbuild.config.gnu.cross.exe.debug.1193540646.;cdt.managedbuild.tool.gnu.cross.c.compiler.38910722;cdt.managedbuild.tool.gnu.c.compiler.input.213984659">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.654180966;cdt.managedbuild.config.gnu.cross.exe.release.654180966.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.184540244;cdt.managedbuild.tool.gnu.cpp.compiler.input.1838836537">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
 	</storageModule>
 </cproject>

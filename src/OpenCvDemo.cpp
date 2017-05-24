@@ -34,6 +34,7 @@ OpenCvDemo::~OpenCvDemo() {
 void OpenCvDemo::runDemo( string argv){
 
 	CaptureClass.open(argv);
+	//CaptureClass.open(0);
 
 	CaptureClass >> src;
 	cvtColor( src, src_gray, CV_BGR2GRAY );
@@ -54,6 +55,7 @@ void OpenCvDemo::runDemo( string argv){
 		FrameCounter ++;
 		cout << "Current Frame Number: " << FrameCounter << endl;
 		goodFeaturesToTrack_Demo( 0, 0 );
+		waitKey(50);
 		/*if (DrawTimer.Over()){
 			waitKey(1);
 			DrawTimer.Reset(1000);
@@ -72,10 +74,6 @@ void OpenCvDemo::runDemo( string argv){
 	return;
 }
 
-void callback( int, void* )
-{
-	MyDemo.goodFeaturesToTrack_Demo(0,0);
-}
 
 void OpenCvDemo::goodFeaturesToTrack_Demo(int, void *)
 {
@@ -120,3 +118,30 @@ void OpenCvDemo::goodFeaturesToTrack_Demo(int, void *)
 	  imshow( source_window, copy );
 
 }
+
+void callback( int, void* )
+{
+	MyDemo.goodFeaturesToTrack_Demo(0,0);
+}
+void ButtonClickOpenCvDemo ( int, void* ) {
+	FILE *in;
+	if (!(in = popen(
+			"zenity  --title=\"Select a video\" --file-selection",
+			"r"))) {
+		return;
+	}
+
+	char buff[512];
+	string selectFile = "";
+	while (fgets(buff, sizeof(buff), in) != NULL) {
+		selectFile += buff;
+	}
+	pclose(in);
+
+	//remove the "\n"
+	selectFile.erase(std::remove(selectFile.begin(), selectFile.end(), '\n'),
+				selectFile.end());
+	MyDemo.runDemo(selectFile);
+	return;
+}
+
