@@ -12,14 +12,13 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 
-#include "tFeatureDetector.h"
-#include "OpenCvDemo.h"
+#include "Core/tFeatureDetector.h"
+#include "OpenCvDemo/OpenCvDemo.h"
 #include "MiaProject/MiaProject.h"
-#include "Typdef.h"
+#include "Core/Typdef.h"
 
 using namespace std;
 using namespace cv;
-#define _BUILD_MARIA
 
 void AktualisiereMainPage (int Prg, void*);
 Hauptprogramm Aktuelle_Programmauswahl;
@@ -30,13 +29,38 @@ int main(int argc, char **argv) {
 	namedWindow( MainPageName, CV_WINDOW_KEEPRATIO );
 	Aktuelle_Programmauswahl = MK_NoSelection;
 	initTyps();
-	createButton( "Raster Images", ButtonClickRasterImage, NULL, CV_PUSH_BUTTON, false);
+	//createButton( "Raster Images", ButtonClickRasterImage, NULL, CV_PUSH_BUTTON, false);
 	//createButton( "OpenCvDemo", ButtonClickOpenCvDemo, NULL, CV_PUSH_BUTTON, false);
 	int Prg = (int) Aktuelle_Programmauswahl;
-	createTrackbar( "Max  corners:", MainPageName, &Prg, (int) Programmname.size(), AktualisiereMainPage );
+	bool MainExit = false;
+	while (!MainExit)
+	{
+		createTrackbar( "Wähle ein Unterprogramm und starte es mit ENTER:", MainPageName, &Prg, (int) Programmname.size()-1, AktualisiereMainPage );
+		Aktuelle_Programmauswahl = (Hauptprogramm) Prg;
+		waitKey();
+		destroyAllWindows();
+		switch (Aktuelle_Programmauswahl)
+		{
+		case Main_MiaPRoject:
+			ButtonClickRasterImage(0,NULL );
+			Prg = Aktuelle_Programmauswahl = MK_NoSelection;
+			break;
+		case Main_Rectivication:
+					ButtonClickRasterImage(0,NULL );
+					Prg = Aktuelle_Programmauswahl = MK_NoSelection;
+					break;
 
-	waitKey();
-	destroyAllWindows();
+		case Main_Exit:
+			MainExit = true;
+			break;
+		default:
+			namedWindow( MainPageName, CV_WINDOW_KEEPRATIO );
+			break;
+		}
+
+	}
+
+	std::cout << "Get out of here" <<std::endl;
 	return 0;
 }
 

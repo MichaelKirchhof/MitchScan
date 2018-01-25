@@ -6,7 +6,7 @@
  */
 
 #include "OpenCvDemo.h"
-#include "Timer.h"
+#include "../Core/Timer.h"
 #include <unistd.h>
 
 

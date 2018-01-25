@@ -8,6 +8,10 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include src/OpenCvDemo/subdir.mk
+-include src/MiaProject/subdir.mk
+-include src/HomoGraphieZerlegung/subdir.mk
+-include src/Core/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk
@@ -44,7 +48,7 @@ all: ImageTransformation
 ImageTransformation: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross G++ Linker'
-	g++ -L/usr/lib/i386-linux-gnu -o "ImageTransformation" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L/home/michael/opencvShare/Build/lib -o "ImageTransformation" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

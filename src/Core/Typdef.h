@@ -15,11 +15,13 @@
 
 enum Hauptprogramm{
 	Main_MiaPRoject,
+	Main_Rectivication,
 	Main_ChessBoardCalibration,
 	Main_HomographyDemo,
 	Main_GoodFeature,
 	Main_Basic_Reconstruction,
 	Main_Adjustment,
+	Main_Exit,
 	MK_NoSelection
 };
 extern std::vector<char *> Programmname;

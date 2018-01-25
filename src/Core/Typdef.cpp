@@ -13,6 +13,7 @@ void initTyps() {
 
 	// Die Reihenfolge muss mit den Enums abgestimmt sein!
 	Programmname.push_back("MiaProject");
+	Programmname.push_back("Image Rectivication");
 	Programmname.push_back("Single Camera Calibration");
 	Programmname.push_back("Homography Demo");
 	Programmname.push_back("GoodFeature to track Demo");
