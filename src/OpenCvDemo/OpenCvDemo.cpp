@@ -43,8 +43,8 @@ void OpenCvDemo::runDemo( string argv){
 	namedWindow( source_window, CV_WINDOW_KEEPRATIO );
 
 	/// Create Trackbar to set the number of corners
-	createTrackbar( "Max  corners:", source_window, &maxCorners, maxTrackbar, callback );
-	createTrackbar( "Quality:", source_window, &IQualityLevel, maxTrackbar, callback );
+	createTrackbar( "Max  corners:", source_window, &maxCorners, maxTrackbar, callback_KLTDemo );
+	createTrackbar( "Quality:", source_window, &IQualityLevel, maxTrackbar, callback_KLTDemo );
 
 	imshow( source_window, src );
 
@@ -119,7 +119,7 @@ void OpenCvDemo::goodFeaturesToTrack_Demo(int, void *)
 
 }
 
-void callback( int, void* )
+void callback_KLTDemo( int, void* )
 {
 	MyDemo.goodFeaturesToTrack_Demo(0,0);
 }

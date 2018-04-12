@@ -30,12 +30,12 @@ public:
 	int maxTrackbar;
 	int IQualityLevel;
 	double qualityLevel;
-	char* source_window;
+	std::string source_window;
 	VideoCapture CaptureClass;
 };
 
 
-void callback( int, void* );
+void callback_KLTDemo( int, void* );
 void ButtonClickOpenCvDemo( int, void* );
 
 extern OpenCvDemo MyDemo;
