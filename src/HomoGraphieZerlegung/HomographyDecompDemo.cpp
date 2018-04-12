@@ -124,3 +124,11 @@ int HomographyDecompDemo::runDemo() {
   return 0;
 }
 
+
+
+void ButtonClickOpenHomoDecompDemo ( int, void* ) {
+	HomographyDecompDemo MyDemo;
+	MyDemo.runDemo();
+	return;
+}
+

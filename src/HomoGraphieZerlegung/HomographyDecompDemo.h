@@ -18,5 +18,8 @@ public:
 };
 
 
+void ButtonClickOpenHomoDecompDemo ( int, void* );
+
+
 
 #endif /* HOMOGRAPHYDECOMPDEMO_H_ */
