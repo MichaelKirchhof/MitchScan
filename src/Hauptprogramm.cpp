@@ -14,8 +14,10 @@
 
 #include "Core/tFeatureDetector.h"
 #include "OpenCvDemo/OpenCvDemo.h"
+#include "HomoGraphieZerlegung/HomographyDecompDemo.h"
 #include "MiaProject/MiaProject.h"
 #include "Core/Typdef.h"
+#include "ManualImageMatching/ManualImageMatching.h"
 
 using namespace std;
 using namespace cv;
@@ -25,7 +27,7 @@ Hauptprogramm Aktuelle_Programmauswahl;
 
 int main(int argc, char **argv) {
 
-	char * MainPageName = "Main Programm Selection";
+	std::string MainPageName = "Main Programm Selection";
 	namedWindow( MainPageName, CV_WINDOW_KEEPRATIO );
 	Aktuelle_Programmauswahl = MK_NoSelection;
 	initTyps();
@@ -36,7 +38,6 @@ int main(int argc, char **argv) {
 	while (!MainExit)
 	{
 		createTrackbar( "Wähle ein Unterprogramm und starte es mit ENTER:", MainPageName, &Prg, (int) Programmname.size()-1, AktualisiereMainPage );
-		Aktuelle_Programmauswahl = (Hauptprogramm) Prg;
 		waitKey();
 		destroyAllWindows();
 		switch (Aktuelle_Programmauswahl)
@@ -46,9 +47,22 @@ int main(int argc, char **argv) {
 			Prg = Aktuelle_Programmauswahl = MK_NoSelection;
 			break;
 		case Main_Rectivication:
-					ButtonClickRasterImage(0,NULL );
-					Prg = Aktuelle_Programmauswahl = MK_NoSelection;
-					break;
+			ButtonClickRasterImage(0,NULL );
+			Prg = Aktuelle_Programmauswahl = MK_NoSelection;
+			break;
+
+		case Main_GoodFeature:
+			ButtonClickOpenCvDemo(0,NULL );
+			Prg = Aktuelle_Programmauswahl = MK_NoSelection;
+			break;
+
+		case Main_HomographyDemo:
+			ButtonClickOpenHomoDecompDemo(0,NULL );
+			Prg = Aktuelle_Programmauswahl = MK_NoSelection;
+			break;
+
+		case Main_ManualImageMatching:
+			ButtonManualImageMatching(0,NULL);
 
 		case Main_Exit:
 			MainExit = true;

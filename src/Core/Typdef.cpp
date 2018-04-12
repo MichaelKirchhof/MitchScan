@@ -6,7 +6,7 @@
  */
 #include "Typdef.h"
 
-std::vector<char *> Programmname;
+std::vector<std::string> Programmname;
 
 
 void initTyps() {
@@ -19,6 +19,7 @@ void initTyps() {
 	Programmname.push_back("GoodFeature to track Demo");
 	Programmname.push_back("Basic Reconstruction");
 	Programmname.push_back("Bundle-Adjustment");
+	Programmname.push_back("Manual Image Matching");
 	Programmname.push_back("Exit");
 
 

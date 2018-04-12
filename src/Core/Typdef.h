@@ -21,10 +21,11 @@ enum Hauptprogramm{
 	Main_GoodFeature,
 	Main_Basic_Reconstruction,
 	Main_Adjustment,
+	Main_ManualImageMatching,
 	Main_Exit,
 	MK_NoSelection
 };
-extern std::vector<char *> Programmname;
+extern std::vector<std::string> Programmname;
 
 void initTyps();
 
