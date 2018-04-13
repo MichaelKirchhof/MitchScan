@@ -63,6 +63,8 @@ int main(int argc, char **argv) {
 
 		case Main_ManualImageMatching:
 			ButtonManualImageMatching(0,NULL);
+			Prg = Aktuelle_Programmauswahl = MK_NoSelection;
+			break;
 
 		case Main_Exit:
 			MainExit = true;

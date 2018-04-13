@@ -19,6 +19,8 @@ public:
 	tManualImageMatching();
 	virtual ~tManualImageMatching();
 	void Start();
+	bool AddClickedPoint(std::string WindowName, std::vector<cv::Point2f> &ListOfPoints, const cv::Mat SourceImage);
+	void DrawMatches(std::string WindowName, cv::Mat &Image, std::vector<cv::Point2f> &ListOfPoints);
 };
 
 

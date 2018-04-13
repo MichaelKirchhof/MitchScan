@@ -27,7 +27,7 @@ tManualImageMatching::~tManualImageMatching() {
 // Hauptrutine für das Matching der Punkte!
 void tManualImageMatching::Start()
 {
-	Mat ReferenzFrame, MatchingFrame, ReferenzFrameWithFeature, MatchingFrameWithFeature;
+	Mat ReferenzFrame, MatchingFrame, ReferenzFrameWithFeature, MatchingFrameWithFeature, TransformedFrame;
 	FILE *in;
 	if (!(in = popen( "zenity  --title=\"Select an reference image\" --file-selection",	"r"))) {
 		// Hier sollte auf dem BasisFrame noch ein Text generiert werden, dass das File nicht geöffnet werden konnte.
@@ -78,36 +78,85 @@ void tManualImageMatching::Start()
 	// Homographie berechnen.
 	// Residuen bestimmen. Ab größe xy User fragen wie es weiter gehen soll...
 	// Transformation und Transformiertes Bild in Datei speichern.
-
-	namedWindow("Referenz Frame", WINDOW_NORMAL);
-	namedWindow("Matching Frame", WINDOW_NORMAL);
-	namedWindow("Transformated Frame", WINDOW_NORMAL);
+	string RefFrame = "Referenz Frame";
+	string MatchFrame = "Matching Frame";
+	string FinalFrame = "Transformated Frame";
+	namedWindow(RefFrame, WINDOW_NORMAL);
+	resizeWindow(RefFrame, 600,600);
+	namedWindow(MatchFrame, WINDOW_NORMAL);
+	resizeWindow(MatchFrame, 600,600);
+	namedWindow(FinalFrame, WINDOW_NORMAL);
+	resizeWindow(FinalFrame, 600,600);
 
 
 	bool ready = false;
-	ClickedPoint PointInRef, PointMatch;
 	vector<Point2f> ListOfPointsInReferenzFrame, ListOfPointsInMatchingFrame;
-	ReferenzFrameWithFeature = ReferenzFrame.clone();
-	MatchingFrameWithFeature = MatchingFrame.clone();
-	while (!ready) {
 
-		imshow("Referenz Frame", ReferenzFrameWithFeature);
-		resizeWindow("Referenz Frame", 600,600);
+	while (!ready) {
+		ReferenzFrameWithFeature = ReferenzFrame.clone();
+		MatchingFrameWithFeature = MatchingFrame.clone();
+		this->DrawMatches(RefFrame, ReferenzFrameWithFeature, ListOfPointsInReferenzFrame);
+		this->DrawMatches(MatchFrame, MatchingFrameWithFeature, ListOfPointsInMatchingFrame);
+		imshow(RefFrame, ReferenzFrameWithFeature);// Später durch die neue Methode draw Feature ersetzen!!
+		imshow(MatchFrame, MatchingFrameWithFeature);// Später durch die neue Methode draw Feature ersetzen!!
 		// Clicken Einfügen!
-		setMouseCallback("Referenz Frame", onMouse, &PointInRef);
-		char HotKey= waitKey(0);
-		if (HotKey == 'e'){
-			ready = true;
-		} else if (HotKey == 'c') {
-			// Hier passiert die Action der Punkt wurde bestätigt. Also rechnen was das zeug hält.
-			if (PointInRef.newPoint) {
-				ListOfPointsInReferenzFrame.push_back(PointInRef.PointCoords);
-			}
-		} else {
-			// Es wurde irgendwas gedrückt. Wir machen einfach nix und warten weiter.
+		this->AddClickedPoint(RefFrame, ListOfPointsInReferenzFrame, ReferenzFrameWithFeature);
+		ready = this->AddClickedPoint(MatchFrame, ListOfPointsInMatchingFrame, MatchingFrameWithFeature);
+
+		if (ListOfPointsInMatchingFrame.size() >4) {
+			// Es liegen genug Punkte vor um eine Homographie zu berechnen. Also geht es los:
+			Mat H = findHomography( ListOfPointsInMatchingFrame, ListOfPointsInReferenzFrame);
+			warpPerspective(MatchingFrame, TransformedFrame, H, ReferenzFrame.size());
+			imshow(FinalFrame, TransformedFrame);
+			resizeWindow(FinalFrame, 600,600);
 		}
 	}
+	std:string SaveName = selectFile;
+	SaveName.resize(SaveName.size()-4);
+	SaveName.append("_transformed.jpg");
+	imwrite(SaveName, TransformedFrame);
 
+	destroyWindow(MatchFrame);
+	destroyWindow(RefFrame);
+	destroyWindow(FinalFrame);
+}
+
+// Die Mehtode gibt ready zurück, falls sie mit 'e' beendet wird. Ansonsten wird gewartet bis erst ein Punkt geklickt wurde und anschließend mit 'c' bestätigt wird.
+bool tManualImageMatching::AddClickedPoint(std::string WindowName, vector<Point2f> &ListOfPoints, const Mat SourceImage)
+{
+	bool ready = false;
+	ClickedPoint NewPoint;
+	setMouseCallback(WindowName, onMouse, &NewPoint);
+	while (1)
+	{
+		Mat Image = SourceImage.clone();
+		char HotKey= waitKey(30);
+
+		if (NewPoint.newPoint) {
+			circle(Image,cvPoint(NewPoint.PointCoords.x,NewPoint.PointCoords.y),20,Scalar(255,0,0),2);
+			imshow(WindowName, Image);
+		}
+		if (HotKey == 'e'){
+			ready = true;
+		}
+		if (HotKey == 'c' || HotKey == 'e') {
+		// Hier passiert die Action der Punkt wurde bestätigt. Also rechnen was das zeug hält.
+			if (NewPoint.newPoint) {
+				ListOfPoints.push_back(NewPoint.PointCoords);
+				break;
+			}
+		}
+	}
+	return ready;
+}
+
+void tManualImageMatching::DrawMatches(std::string WindowName, cv::Mat &Image, std::vector<cv::Point2f> &ListOfPoints)
+{
+	for (int i=0; i < ListOfPoints.size(); i++) {
+		circle(Image,cvPoint(ListOfPoints[i].x,ListOfPoints[i].y),20,Scalar(0,0,0),2);//draw circle in point 100,100
+	}
+	imshow(WindowName, Image);
+	resizeWindow(WindowName, 600,600);
 }
 
 void onMouse(int event, int i, int j, int flags, void* param)
