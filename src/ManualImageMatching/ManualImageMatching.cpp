@@ -103,7 +103,7 @@ void tManualImageMatching::Start()
 		this->AddClickedPoint(RefFrame, ListOfPointsInReferenzFrame, ReferenzFrameWithFeature);
 		ready = this->AddClickedPoint(MatchFrame, ListOfPointsInMatchingFrame, MatchingFrameWithFeature);
 
-		if (ListOfPointsInMatchingFrame.size() >4) {
+		if (ListOfPointsInMatchingFrame.size() >3) {
 			// Es liegen genug Punkte vor um eine Homographie zu berechnen. Also geht es los:
 			Mat H = findHomography( ListOfPointsInMatchingFrame, ListOfPointsInReferenzFrame);
 			warpPerspective(MatchingFrame, TransformedFrame, H, ReferenzFrame.size());
@@ -130,7 +130,7 @@ bool tManualImageMatching::AddClickedPoint(std::string WindowName, vector<Point2
 	while (1)
 	{
 		Mat Image = SourceImage.clone();
-		char HotKey= waitKey(30);
+		char HotKey= waitKey(1);
 
 		if (NewPoint.newPoint) {
 			circle(Image,cvPoint(NewPoint.PointCoords.x,NewPoint.PointCoords.y),20,Scalar(255,0,0),2);
